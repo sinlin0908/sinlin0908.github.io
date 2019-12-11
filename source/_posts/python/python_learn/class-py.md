@@ -2,7 +2,7 @@
 title: Python 物件
 date: 2018-02-12 16:52:30
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 ---
@@ -89,7 +89,7 @@ class Woman():
 
     def compute_BMI(self):
         return self.weight/((self.height/100)**2)
-    
+
     def print_BWH(self):
         print('B:{},W:{},H:{}'.format(self.bust,self.waist,self.hip))
 
@@ -128,7 +128,7 @@ class Woman(Human):
         self.bust = bust
         self.waist = waist
         self.hip = hip
-        
+
     def print_BWH(self):
         print('B:{},W:{},H:{}'.format(self.bust,self.waist,self.hip))
 ```
@@ -172,7 +172,7 @@ I am Woman!
 
 Python 並不這麼麻煩! 因為所有的屬性和方法都是共用的(public)，但如果不想讓外部存取，我們可以在屬性和方法的命名前加上`__`
 
-那怎麼使用呢? 
+那怎麼使用呢?
 來實做個，我們有一個 class 叫做 `Duck( )`，他只有一個屬性叫做 `__name` ，這個是我們不希望有人直接存取他，有點像 C++ private 的概念。
 
 ```python
@@ -223,7 +223,7 @@ def main():
     print(fowl._Duck__name)
 ---------------執行結果---------------
 Mike
-Mike    
+Mike
 ```
 诶? 還是原本的
 
@@ -309,7 +309,7 @@ class Human():
     @staticmethod
     def talk():
         print('I am a human')
-    
+
 
 Human.talk()
 ---------------執行結果---------------

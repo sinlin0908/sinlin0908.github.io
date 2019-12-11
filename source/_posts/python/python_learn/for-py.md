@@ -24,7 +24,7 @@ No even number found
 ```
 <!--more-->
 
-## Continue  Break 和 else 
+## Continue  Break 和 else
 跟 while 那篇一樣就不再贅述了
 
 可以參考這篇[Python While迴圈](https://sinlin0908.github.io/2018/01/30/while-py/#more)
@@ -39,7 +39,7 @@ for(int i = 0;i<end;i++)
 }
 ```
 而 python 則是使用 `range()` 來產生 0 ~ end 的數字
-{%note info %} 用法是 range(start,stop-1,step)  {% endnote %}
+用法是 range(start,stop-1,step)
 
 ```python
 for index in range(0,len(mylist)):

@@ -2,7 +2,7 @@
 title: Python 檔案處理
 date: 2018-02-10 17:06:53
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 ---
@@ -11,7 +11,7 @@ categories:
 ## Open & close
 
 我們要做檔案讀寫時，一定要相進行開啟檔案，我們使用 `open()`
->fileobj = open(filename,mode='r',encoding=None) 
+>fileobj = open(filename,mode='r',encoding=None)
 1. fileobj : 是接 open( ) return 的檔案物件
 2. mode: 來指定檔案權限
 3. encoding: 編碼
@@ -19,13 +19,13 @@ categories:
 
 以下是 mode 的 表示:
 
-|mode type|意義
-|:-------:|:----:
-|`r`      | read only
-|`w`      | write only，如果 file 不存在會產生一個新的。如果存在會從頭寫入
-|`x`      | 只能用在檔案不存在的時候，新建檔案並且寫入
-|`a`      |如果檔案存在，從檔案尾端(EOF)寫入
-| `+`     |如果是read可以write，是write可以read
+| mode type |                              意義                              |
+| :-------: | :------------------------------------------------------------: |
+|    `r`    |                           read only                            |
+|    `w`    | write only，如果 file 不存在會產生一個新的。如果存在會從頭寫入 |
+|    `x`    |           只能用在檔案不存在的時候，新建檔案並且寫入           |
+|    `a`    |               如果檔案存在，從檔案尾端(EOF)寫入                |
+|    `+`    |              如果是read可以write，是write可以read              |
 
 
 使用完檔案之後要記得 `close( )`，將檔案關閉以節省資源。
@@ -41,8 +41,8 @@ with open('poem') as file:
 這樣就行了，方便很多。
 
 ## Write
-使用 `write( )` 前 `open( )` 要有 `w` 的權限。 
->bytes = file.write(data) 
+使用 `write( )` 前 `open( )` 要有 `w` 的權限。
+>bytes = file.write(data)
 
 `write( )` 會 return 被寫入的 byte 數。但它跟 `print( )` 不一樣，他不會 自動在尾端加入`\n`。
 

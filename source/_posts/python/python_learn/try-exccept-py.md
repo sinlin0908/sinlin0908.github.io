@@ -46,10 +46,10 @@ else:
 來說明這段 code:
 1. 首先，我們先執行 `try` 來打開文件。
 2. 如果有錯誤我們就執行 `except` 來處理錯誤，我們把錯誤的細節存放在 `error` 這個 variable，之後詢問 user 是否要創建這個檔案。
-{%note warning %} 事實上有很多種 exception
+事實上有很多種 exception
 運用 `某個Exception as error` 的方式來處理特定 exception，
-這個例子是處理全部的 exception {% endnote %}
-3. 第12行的 `else` 則是 `try`的語句沒有報錯時才來執行。
+這個例子是處理全部的 exception
+1. 第12行的 `else` 則是 `try`的語句沒有報錯時才來執行。
 
 ## 製作自己的 exception
  通常所有的 exception 都被定義在 Python 裡面，但我們也可以自己創建一個 exception。

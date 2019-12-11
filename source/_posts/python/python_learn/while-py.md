@@ -2,7 +2,7 @@
 title: Python While迴圈
 date: 2018-01-30 14:18:40
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 ---

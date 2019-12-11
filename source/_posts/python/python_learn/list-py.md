@@ -2,7 +2,7 @@
 title: Python 的 list
 date: 2018-01-23 20:51:52
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 ---
@@ -53,14 +53,14 @@ print(names[2:3])
 ---------執行結果---------
 
 ['Tim']
-   
+
 ```
 奇怪？[2:3] 不是2~3的意思嗎？怎麼只有Tim一個人？
 
 哦~~原來我用法錯誤！！
 正確是這樣
 
-> [Start:End-1] 
+> [Start:End-1]
 > end是要減1的
 > 使用[Start:End-1] return 是一個 list 喔！
 
@@ -121,7 +121,7 @@ print(names[:])  # 全部
 ```python
 names = ['Mike', 'John', 'Tim', 'Amy', 'Jenny']
 names.append("Curry")
-    
+
 print("After append() ",names)
 
 ---------執行結果---------
@@ -189,7 +189,7 @@ print(names)
 ['Mike', 'Faker', 'Tim', 'Amy', 'Jenny']
 
 ```
-有了John被改成我們要的Faker了 
+有了John被改成我們要的Faker了
 
 ## 刪除
 

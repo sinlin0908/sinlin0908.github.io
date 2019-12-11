@@ -8,7 +8,7 @@ top: true
 
 
 Hello EveryBody
-我是 SinLin 
+我是 SinLin
 這裡紀錄著我的學習歷程與生活點滴
 
 讓生活不留白

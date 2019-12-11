@@ -2,7 +2,7 @@
 title: Python 的 String
 date: 2018-01-23 20:50:52
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 ---

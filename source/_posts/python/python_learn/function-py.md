@@ -2,7 +2,7 @@
 title: Python 的 Function
 date: 2018-01-30 17:16:05
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 ---
@@ -47,7 +47,7 @@ def 是個陳述，所以執行到 def 陳述時，就建立了該陳述相關�
 def buggy(arg,result =[]):
     result.append(arg)
     return result
-    
+
 print(buggy('a'))
 
 print(buggy('b'))
@@ -67,7 +67,7 @@ def buggy(arg):
     result = []
     result.append(arg)
     return result
-    
+
 print(buggy('a'))
 print(buggy('b'))
 ---------------執行結果---------------
@@ -85,7 +85,7 @@ print(buggy('b'))
 ```python
 def printArgs(*arg):
     print(arg)
-    
+
 printArgs('apple','google','android','asus')
 ---------------執行結果---------------
 ('apple', 'google', 'android', 'asus')
@@ -101,7 +101,7 @@ printArgs('apple','google','android','asus')
 ```python
 def printKwargs(**kwarg):
     print('keyword argument:',kwarg)
-    
+
 printKwargs(Id = '6666',name = 'Bob',age = '18')
 ---------------執行結果---------------
 keyword argument: {'Id': '6666', 'name': 'Bob', 'age': '18'}
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 100
 
 ```
-{%note warning %} 我們當參數傳入的是 'print_hundred'，而不是 'print_hundred( )'!! ( ) 代表 call 這個 function!! {% endnote %}
+我們當參數傳入的是 'print_hundred'，而不是 'print_hundred( )'!! ( ) 代表 call 這個 function!!
 
 ## Local Function
 這個我覺得挺牛逼的XD
@@ -137,7 +137,7 @@ def student(saying):
         return "We are the students who say:'{q}'".format(q =saying)
 
     return inner()
-    
+
 if __name__ == '__main__':
     print(student('hello world!'))
 
@@ -150,7 +150,7 @@ Local function 可以使用主要 function 的資源
 ## lambda function
 有些小 function 而外寫他有點浪費時間，所以我們可以使用 lambda 來取代。
 
-例子: 
+例子:
 我們需要輸入一串水果名稱，並將其第一個字母大寫且尾巴加上驚嘆號
 
 改良前:

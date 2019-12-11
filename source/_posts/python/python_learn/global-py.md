@@ -2,7 +2,7 @@
 title: Python 命名空間
 date: 2018-02-01 17:26:25
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 ---

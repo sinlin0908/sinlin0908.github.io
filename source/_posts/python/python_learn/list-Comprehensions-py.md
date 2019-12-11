@@ -2,7 +2,7 @@
 title: Python Comprehensions
 date: 2018-01-30 16:25:51
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 
@@ -21,7 +21,7 @@ for number in range(0,6):
 用法如下:
 >[ 輸入 list 的值 for 項目 in 可跌代的資料結構 ]
 
-<!--more--> 
+<!--more-->
 
 以下是例子:
 
@@ -47,7 +47,7 @@ number 從 range() 取道值後，乘 10 在寫入 list。
 
 假如我們從 0 到 10 中 選出偶數放入 list 該怎麼辦?
 不擔心! Comprehensions 可以添加 if statement !!
-{%note info %} [ 輸入 list 的值 for 項目 in 可跌代的資料結構 if 條件式 ]  {% endnote %}
+[ 輸入 list 的值 for 項目 in 可跌代的資料結構 if 條件式 ]
 
 ```python
 number_list = [number for number in range(0,11) if number % 2 == 0]
@@ -57,8 +57,8 @@ print(number_list)
 
 ```
 
-生成式不只有 list 可以用 dict、set都可以使用 
-除了 Tuple!! 
+生成式不只有 list 可以用 dict、set都可以使用
+除了 Tuple!!
 
 ## 資料來源:
 [精通 Python：運用簡單的套件進行現代運算](http://www.books.com.tw/products/0010690075)

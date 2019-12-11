@@ -2,7 +2,7 @@
 title: Python 的 字典
 date: 2018-01-28 22:06:19
 tags: python
-categories: 
+categories:
 - python
 - 語法學習
 ---
@@ -145,7 +145,7 @@ student ={
     'stud0004':'Bob',
 }
 
-del student['stud0001'] 
+del student['stud0001']
 
 print(student)
 
