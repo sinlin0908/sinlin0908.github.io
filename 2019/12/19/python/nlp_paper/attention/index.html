@@ -119,12 +119,8 @@ p\left(y_{j} | y_{<j}, \boldsymbol{s}\right)=\operatorname{softmax}\left(g\left(
 <script type="math/tex; mode=display">
 \boldsymbol{h}_{j}=f\left(\boldsymbol{h}_{j-1}, \boldsymbol{s}\right)</script><p>$f$ 為 RNN 架構 (GRU、LSTM 等等)，$s$ 為 source sentence ， $\boldsymbol{h}_{j-1}$ 為 decoder 上一個 time step 的 hidden state</p>
 <p>關於 LSTM 架構本篇 paper 使用 <code>stacking LSTM</code> 如(圖 1)，且使用 <code>dropout on RNN</code> 技術</p>
-<center>
-    <figure>
-        <img alt="stacking LSTM" data-src="https://i.imgur.com/kSGMOeY.png" class="lazyload">
-        <figcaption>圖 1、 Stacking LSTM</figcaption>
-    </figure>
-</center>
+<p><img alt="&quot;stacking LSTM&quot;" data-src="https://i.imgur.com/kSGMOeY.png" class="lazyload"></p>
+<center>圖 1、 Stacking LSTM</center>
 
 <ul>
 <li>藍色部分: encoder</li>
@@ -135,12 +131,8 @@ p\left(y_{j} | y_{<j}, \boldsymbol{s}\right)=\operatorname{softmax}\left(g\left(
 J_{t}=\sum_{(x, y) \in \mathbb{D}}-\log p(y | x)</script><h3 id="Attention-Model"><a href="#Attention-Model" class="headerlink" title="Attention Model"></a>Attention Model</h3><p>Attention 機制是為了產生 context vector 時，在 source sentence 裡找尋與 prdicting target word 相關的部分，這樣可以減去不必要的資訊，且可以處理較長的句子。</p>
 <p>global attention 和 local attention 的共同點是把 stacking LSTM 最上層的 hidden state 當作 input (如圖 2)</p>
 <p>目的是 source-side 相關的 context vector 去預測  $y_t$</p>
-<center>
-    <figure>
-        <img alt="top layer" data-src="https://i.imgur.com/cf8rPrX.png" class="lazyload">
-        <figcaption>圖 2. Top Layer</figcaption>
-    </figure>
-</center>
+<p><img alt="top layer" data-src="https://i.imgur.com/cf8rPrX.png" class="lazyload"></p>
+<center>圖 2. Top Layer</center>
 
 <p>關於 context vector 的計算是這篇 paper 的賣點之後會介紹</p>
 <p>求出 context vector 後，與 target hidden state 利用 concatenate layer 是 fully connected layer 架構連接起來，得到 attentional hidden state ，公式如下:</p>
@@ -150,14 +142,8 @@ J_{t}=\sum_{(x, y) \in \mathbb{D}}-\log p(y | x)</script><h3 id="Attention-Model
 <script type="math/tex; mode=display">
 p\left(y_{j} | y_{<j}, \boldsymbol{s}\right)=\operatorname{softmax}\left(g\left(\boldsymbol{h}_{j}\right)\right)</script><p>公式變為</p>
 <script type="math/tex; mode=display">
-p\left(y_{t} | y_{<t}, x\right)=\operatorname{softmax}\left(\boldsymbol{W}_{s} \tilde{\boldsymbol{h}}_{t}\right)</script><h4 id="Global-Attention"><a href="#Global-Attention" class="headerlink" title="Global Attention"></a>Global Attention</h4><center>
-    <figure>
-        <img alt="global attention" data-src="https://i.imgur.com/awmospk.png" class="lazyload">
-        <figcaption>
-            圖 3. Global Attention 架構圖
-        </figcaption>
-    </figure>
-</center>
+p\left(y_{t} | y_{<t}, x\right)=\operatorname{softmax}\left(\boldsymbol{W}_{s} \tilde{\boldsymbol{h}}_{t}\right)</script><h4 id="Global-Attention"><a href="#Global-Attention" class="headerlink" title="Global Attention"></a>Global Attention</h4><p><img alt="global attention" data-src="https://i.imgur.com/awmospk.png" class="lazyload"></p>
+<center>圖 3. Global Attention 架構圖</center>
 
 <p>Global attention 計算 context vector 時，參考全部的 source sentence，利用 decoder 的 target hidden state $h_t$ 與 encoder 的 source hidden state $\overline{\boldsymbol{h}}_{s}$ 做比較，得到 variable-length alignment vector $a_t$，它的長度等於 source side 的時間長度。</p>
 <p>alignment vector 可以視為 source hidden state 與 target hidden 的 attention score，也就是該 source hidden state 和 target hidden state 的關係度有多少。</p>
@@ -176,27 +162,15 @@ p\left(y_{t} | y_{<t}, x\right)=\operatorname{softmax}\left(\boldsymbol{W}_{s} \
 {\boldsymbol{v}_{a}^{\top} \tanh \left(\boldsymbol{W}_{a}\left[\boldsymbol{h}_{t} ; \overline{\boldsymbol{h}}_{s}\right]\right)} & {\text { concat }}
 \end{array}\right.</script><p>$\boldsymbol{v}_{a}$ 和 $W_a$ 都是可訓練的</p>
 <p>圖 4 是擷取 <a href="https://pytorch.org/tutorials/beginner/chatbot_tutorial.html" target="_blank" rel="noopener">Pytorch chatbot tutorial</a> 的 code 來看計算 score 的部分</p>
-<center>
-    <figure>
-        <img alt="pytorch global attention score" data-src="https://i.imgur.com/PCvBwHe.png" class="lazyload">
-        <figcaption>
-            圖 4. attention score in Pytorch
-        </figcaption>
-    </figure>
-</center>
+<p><img alt="pytorch global attention score" data-src="https://i.imgur.com/PCvBwHe.png" class="lazyload"></p>
+<center>圖 4. attention score in Pytorch</center>
 
 <p>上面為 initialization 的部分，下面為 forward 部分</p>
 <p>最後是計算 context vector 的部分。將 alignment vector 和與之對應的 source hidden state 做 weighted-sum ，公式如下:</p>
 <script type="math/tex; mode=display">
 c=\sum \hat{\alpha}^{i} h^{i}</script><p>圖 5 為擷取<a href="https://www.youtube.com/channel/UC2ggjtuuWvxrHHHiaDH1dlQ" target="_blank" rel="noopener">台灣大學電機系李宏毅教授教學影片</a>關於 attention 的圖片</p>
-<center>
-    <figure>
-        <img alt="李宏毅教授 attention" data-src="https://i.imgur.com/E5a2iXf.png" class="lazyload">
-        <figcaption>
-            圖 5. 李宏毅教授 attention
-        </figcaption>
-    </figure>
-</center>
+<p><img alt="李宏毅教授 attention" data-src="https://i.imgur.com/E5a2iXf.png" class="lazyload"></p>
+<center> 圖 5. 李宏毅教授 attention</center>
 
 <p>$h^1$ 與 $a_{0}^{1}$ 相乘….以此類推，之後加起來得到 context vector</p>
 <p>與 Bahdanau et al. 比較</p>
@@ -214,14 +188,8 @@ c=\sum \hat{\alpha}^{i} h^{i}</script><p>圖 5 為擷取<a href="https://www.you
 </ul>
 </li>
 </ol>
-<h4 id="Local-attention"><a href="#Local-attention" class="headerlink" title="Local attention"></a>Local attention</h4><center>
-    <figure>
-        <img alt="local attention" data-src="https://i.imgur.com/ctZ1LwA.png" class="lazyload">
-        <figcaption>
-            圖 6. Local Attention 架構圖
-        </figcaption>
-    </figure>
-</center>
+<h4 id="Local-attention"><a href="#Local-attention" class="headerlink" title="Local attention"></a>Local attention</h4><p><img alt="local attention" data-src="https://i.imgur.com/ctZ1LwA.png" class="lazyload"></p>
+<center>圖 6. Local Attention 架構圖</center>
 
 <p>global attention 的問題</p>
 <ul>
@@ -252,23 +220,11 @@ p_{t}=t</script><p>alignment vector 計算與 global attention 是一樣的</p>
 <p><img alt="alignment vector 公式" data-src="https://i.imgur.com/I7mHNtn.png" class="lazyload"></p>
 <p>$\sigma=\frac{D}{2}$，$\overline{\boldsymbol{h}}_{s}$ 是 $h_{[pt−D, pt+D]}$</p>
 <p>因為要讓 $a_t$ 圍繞在 $p_t$ 附近，加上了高斯分佈</p>
-<center>
-    <figure>
-        <img alt="高斯分布" data-src="https://i.imgur.com/XEjZJWi.png" class="lazyload">
-        <figcaption>
-            圖 7. 高斯分布
-        </figcaption>
-    </figure>
-</center>
+<p><img alt="高斯分布" data-src="https://i.imgur.com/XEjZJWi.png" class="lazyload"></p>
+<center>圖 7. 高斯分布</center>
 
-<h3 id="Feeding-input"><a href="#Feeding-input" class="headerlink" title="Feeding input"></a>Feeding input</h3><center>
-    <figure>
-        <img alt="feeding input" data-src="https://i.imgur.com/lIPxPlG.png" class="lazyload">
-        <figcaption>
-            圖 8. Feeding Input
-        </figcaption>
-    </figure>
-</center>
+<h3 id="Feeding-input"><a href="#Feeding-input" class="headerlink" title="Feeding input"></a>Feeding input</h3><p><img alt="feeding input" data-src="https://i.imgur.com/lIPxPlG.png" class="lazyload"></p>
+<center>圖 8. Feeding Input</center>
 
 <p>將 attentional hidden state $\tilde{\boldsymbol{h}}_{t}$ 與 decoder input concatenate 一起丟入 decoder。</p>
 <p>好處</p>
@@ -277,34 +233,16 @@ p_{t}=t</script><p>alignment vector 計算與 global attention 是一樣的</p>
 <li>model 太大，不會資訊遺漏</li>
 </ul>
 <h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p>結果就不多說了</p>
-<center>
-    <figure>
-        <img alt="result" data-src="https://i.imgur.com/LX0krbE.png" class="lazyload">
-        <figcaption>
-            圖 9. Result
-        </figcaption>
-    </figure>
-</center>
+<p><img alt="result" data-src="https://i.imgur.com/LX0krbE.png" class="lazyload"></p>
+<center>圖 9. Result</center>
 
 <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>dataset 為 English-German newstest2014</p>
 <h3 id="Long-Sentence"><a href="#Long-Sentence" class="headerlink" title="Long Sentence"></a>Long Sentence</h3><p>對於 long sentence 的比較圖</p>
-<center>
-    <figure>
-        <img alt="long sentence" data-src="https://i.imgur.com/uTWl0Kq.png" class="lazyload">
-        <figcaption>
-            圖 10. Long sentence 比較圖
-        </figcaption>
-    </figure>
-</center>
+<p><img alt="long sentence" data-src="https://i.imgur.com/uTWl0Kq.png" class="lazyload"></p>
+<center>圖 10. Long sentence 比較圖</center>
 
-<h3 id="Attentional-model-的選擇"><a href="#Attentional-model-的選擇" class="headerlink" title="Attentional model 的選擇"></a>Attentional model 的選擇</h3><center>
-    <figure>
-        <img alt="attentional model 比較圖" data-src="https://i.imgur.com/s6zfNus.png" class="lazyload">
-        <figcaption>
-            圖 11. attentional model 比較圖
-        </figcaption>
-    </figure>
-</center>
+<h3 id="Attentional-model-的選擇"><a href="#Attentional-model-的選擇" class="headerlink" title="Attentional model 的選擇"></a>Attentional model 的選擇</h3><p><img alt="attentional model 比較圖" data-src="https://i.imgur.com/s6zfNus.png" class="lazyload"></p>
+<center>圖 11. attentional model 比較圖</center>
 
 <p>以下幾點是論文的分析</p>
 <ul>
