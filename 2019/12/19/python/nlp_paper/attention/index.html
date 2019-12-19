@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Effective Approaches to Attention-based Neural Machine Translation 筆記 | SineLin's Blog</title><meta name="description" content="Effective Approaches to Attention-based Neural Machine Translation 閱讀筆記"><meta name="keywords" content="Effective Approaches to Attention-based Neural Machine Translation,attention"><meta name="author" content="SineLin"><meta name="copyright" content="SineLin"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Effective Approaches to Attention-based Neural Machine Translation 筆記"><meta name="twitter:description" content="Effective Approaches to Attention-based Neural Machine Translation 閱讀筆記"><meta name="twitter:image" content="https://i.imgur.com/awmospk.png"><meta property="og:type" content="article"><meta property="og:title" content="Effective Approaches to Attention-based Neural Machine Translation 筆記"><meta property="og:url" content="https://sinlin0908.github.io/2019/12/19/python/nlp_paper/attention/"><meta property="og:site_name" content="SineLin's Blog"><meta property="og:description" content="Effective Approaches to Attention-based Neural Machine Translation 閱讀筆記"><meta property="og:image" content="https://i.imgur.com/awmospk.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="canonical" href="https://sinlin0908.github.io/2019/12/19/python/nlp_paper/attention/"><link rel="next" title="Python 物件" href="/https:/sinlin0908.github.io/2018/02/12/python/python_learn/class-py/"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-154354898-1', 'auto');
+ga('send', 'pageview');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight_copy: 'false',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '鍵將本頁加入書籤'
+  },
+  runtime_unit: '天',
+  copyright: undefined,
+  copy_copyright_js: false,
+  ClickShowText: undefined,
+  medium_zoom: 'true',
+  Snackbar: undefined
+  
+}</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-154354898-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-154354898-1');</script><meta name="generator" content="Hexo 4.1.0"></head><body><div id="header"> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">SineLin's Blog</a></span><i class="fa fa-bars fa-fw toggle-menu pull_right close" aria-hidden="true"></i><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div></div></span><span class="pull_right" id="search_button"></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lazyload avatar_img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is_center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">標籤</div><div class="length_num">5</div></a></div></div><div class="mobile_data_item is_center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分類</div><div class="length_num">5</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目錄</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#前言"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">前言</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Introduction"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">Introduction</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Model"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">Model</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Neural-Machine-Translation"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">Neural Machine Translation</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Attention-Model"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">Attention Model</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#Global-Attention"><span class="toc_mobile_items-number">3.2.1.</span> <span class="toc_mobile_items-text">Global Attention</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#Local-attention"><span class="toc_mobile_items-number">3.2.2.</span> <span class="toc_mobile_items-text">Local attention</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Feeding-input"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">Feeding input</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Result"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">Result</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Analysis"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">Analysis</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Long-Sentence"><span class="toc_mobile_items-number">5.1.</span> <span class="toc_mobile_items-text">Long Sentence</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Attentional-model-的選擇"><span class="toc_mobile_items-number">5.2.</span> <span class="toc_mobile_items-text">Attentional model 的選擇</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Reference"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">Reference</span></a></li></ol></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目錄</div><div class="sidebar-toc__progress"><span class="progress-notice">你已經讀了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model"><span class="toc-number">3.</span> <span class="toc-text">Model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neural-Machine-Translation"><span class="toc-number">3.1.</span> <span class="toc-text">Neural Machine Translation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Attention-Model"><span class="toc-number">3.2.</span> <span class="toc-text">Attention Model</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Global-Attention"><span class="toc-number">3.2.1.</span> <span class="toc-text">Global Attention</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Local-attention"><span class="toc-number">3.2.2.</span> <span class="toc-text">Local attention</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feeding-input"><span class="toc-number">3.3.</span> <span class="toc-text">Feeding input</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Result"><span class="toc-number">4.</span> <span class="toc-text">Result</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Analysis"><span class="toc-number">5.</span> <span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Long-Sentence"><span class="toc-number">5.1.</span> <span class="toc-text">Long Sentence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Attentional-model-的選擇"><span class="toc-number">5.2.</span> <span class="toc-text">Attentional model 的選擇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://i.imgur.com/Y56YQkQ.png)"><div id="post-info"><div id="post-title"><div class="posttitle">Effective Approaches to Attention-based Neural Machine Translation 筆記</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 發表於 2019-12-19<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新於 2019-12-20</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Paper-Note/">Paper Note</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Paper-Note/NLP/">NLP</a></span><div class="post-meta-wordcount"><i class="fa fa-eye post-meta__icon" aria-hidden="true">       </i><span>閲讀量: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p><a href="https://arxiv.org/pdf/1508.04025.pdf" target="_blank" rel="noopener">Paper 連結</a></p>
+<p>!!貼心提醒: 可以由右下角齒輪設定將文章轉成簡體字</p>
+<p>如有錯誤，請留言提醒，謝謝 ^^</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Luong 等人提出兩種新的 attention 機制 : global、local。</p>
+<ul>
+<li>global : 每次注意全部 source sentence 的詞</li>
+<li>local : 每個時間點，只注意局部的 source sentence</li>
+</ul>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>global attention :<ul>
+<li>類似 Bahdanau 等人[1] 所提出的方法</li>
+<li>優點 : 比起 Bahdanau 等人 更精簡，之後會做一些比較</li>
+</ul>
+</li>
+<li>local attention :<ul>
+<li>有點像 Xu 等人 [2] 所提出的 soft attention 與 hard attention 的混和</li>
+<li>優點 :<ul>
+<li>比起 hard attention， Luong 等人的方法是可以<strong>微分</strong>的，容易訓練</li>
+<li>計算成本比 global attention 低</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><h3 id="Neural-Machine-Translation"><a href="#Neural-Machine-Translation" class="headerlink" title="Neural Machine Translation"></a>Neural Machine Translation</h3><p>機器翻譯整體來說就是在算給定 source word 並求出 target word 的條件機率 $p(y|x)$</p>
+<p>而機器翻譯通常使用 sequence to sequence model 來解決這個 issue</p>
+<ul>
+<li>encoder : source sentence 編碼成一個 fixed-size vector (稱為 context vector)</li>
+<li>decoder : context vector 解碼，求出 target word</li>
+</ul>
+<p>因此條件機率 $p(y|x)$ 可以改寫成</p>
+<script type="math/tex; mode=display">
+ \log p(y | x)=\sum_{j=1}^{m} \log p\left(y_{j} | y_{<j}, s\right)</script><p>這個機率要怎麼以 model 的形式展現?</p>
+<p>我們可以使用一個 fully connected layer 來轉換 Seq2Seq 的 output 成辭典字量大小的 vector，並使用 <code>Softmax</code> 來表達 target word 機率，公式如下:</p>
+<script type="math/tex; mode=display">
+p\left(y_{j} | y_{<j}, \boldsymbol{s}\right)=\operatorname{softmax}\left(g\left(\boldsymbol{h}_{j}\right)\right)</script><p>$g$ 為 fully connected layer, $\boldsymbol{h}_{j}$ 為 decoder 的 hidden state，代表之前 target sentence 的資訊</p>
+<p>Seq2Seq 在這篇 paper 使用的是 LSTM 架構，因此 $\boldsymbol{h}_{j}$ 的計算公式為</p>
+<script type="math/tex; mode=display">
+\boldsymbol{h}_{j}=f\left(\boldsymbol{h}_{j-1}, \boldsymbol{s}\right)</script><p>$f$ 為 RNN 架構 (GRU、LSTM 等等)，$s$ 為 source sentence ， $\boldsymbol{h}_{j-1}$ 為 decoder 上一個 time step 的 hidden state</p>
+<p>關於 LSTM 架構本篇 paper 使用 <code>stacking LSTM</code> 如(圖 1)，且使用 <code>dropout on RNN</code> 技術</p>
+<center>
+    <figure>
+        <img alt="stacking LSTM" data-src="https://i.imgur.com/kSGMOeY.png" class="lazyload">
+        <figcaption>圖 1、 Stacking LSTM</figcaption>
+    </figure>
+</center>
+
+<ul>
+<li>藍色部分: encoder</li>
+<li>紅色部分: decoder</li>
+</ul>
+<p>訓練的目標函數為:</p>
+<script type="math/tex; mode=display">
+J_{t}=\sum_{(x, y) \in \mathbb{D}}-\log p(y | x)</script><h3 id="Attention-Model"><a href="#Attention-Model" class="headerlink" title="Attention Model"></a>Attention Model</h3><p>Attention 機制是為了產生 context vector 時，在 source sentence 裡找尋與 prdicting target word 相關的部分，這樣可以減去不必要的資訊，且可以處理較長的句子。</p>
+<p>global attention 和 local attention 的共同點是把 stacking LSTM 最上層的 hidden state 當作 input (如圖 2)</p>
+<p>目的是 source-side 相關的 context vector 去預測  $y_t$</p>
+<center>
+    <figure>
+        <img alt="top layer" data-src="https://i.imgur.com/cf8rPrX.png" class="lazyload">
+        <figcaption>圖 2. Top Layer</figcaption>
+    </figure>
+</center>
+
+<p>關於 context vector 的計算是這篇 paper 的賣點之後會介紹</p>
+<p>求出 context vector 後，與 target hidden state 利用 concatenate layer 是 fully connected layer 架構連接起來，得到 attentional hidden state ，公式如下:</p>
+<script type="math/tex; mode=display">
+\tilde{\boldsymbol{h}}_{t}=\tanh \left(\boldsymbol{W}_{c}\left[\boldsymbol{c}_{t} ; \boldsymbol{h}_{t}\right]\right)</script><p>$\tilde{\boldsymbol{h}}_{t}$ 為 attentional hidden state</p>
+<p>之後套用算出 target word 機率的公式</p>
+<script type="math/tex; mode=display">
+p\left(y_{j} | y_{<j}, \boldsymbol{s}\right)=\operatorname{softmax}\left(g\left(\boldsymbol{h}_{j}\right)\right)</script><p>公式變為</p>
+<script type="math/tex; mode=display">
+p\left(y_{t} | y_{<t}, x\right)=\operatorname{softmax}\left(\boldsymbol{W}_{s} \tilde{\boldsymbol{h}}_{t}\right)</script><h4 id="Global-Attention"><a href="#Global-Attention" class="headerlink" title="Global Attention"></a>Global Attention</h4><center>
+    <figure>
+        <img alt="global attention" data-src="https://i.imgur.com/awmospk.png" class="lazyload">
+        <figcaption>
+            圖 3. Global Attention 架構圖
+        </figcaption>
+    </figure>
+</center>
+
+<p>Global attention 計算 context vector 時，參考全部的 source sentence，利用 decoder 的 target hidden state $h_t$ 與 encoder 的 source hidden state $\overline{\boldsymbol{h}}_{s}$ 做比較，得到 variable-length alignment vector $a_t$，它的長度等於 source side 的時間長度。</p>
+<p>alignment vector 可以視為 source hidden state 與 target hidden 的 attention score，也就是該 source hidden state 和 target hidden state 的關係度有多少。</p>
+<p>計算公式如下</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\boldsymbol{a}_{t}(s) &=\operatorname{align}\left(\boldsymbol{h}_{t}, \overline{\boldsymbol{h}}_{s}\right) \\
+&=\frac{\exp \left(\operatorname{score}\left(\boldsymbol{h}_{t}, \overline{\boldsymbol{h}}_{s}\right)\right)}{\sum_{s^{\prime}} \exp \left(\operatorname{score}\left(\boldsymbol{h}_{t}, \overline{\boldsymbol{h}}_{s^{\prime}}\right)\right)}\\
+&=\operatorname{softmax}\left(\boldsymbol{h}_{t}, \overline{\boldsymbol{h}}_{s}\right)
+\end{aligned}</script><p>注意有使用 <code>softmax</code> ，因此 alignment vector 是一個機率</p>
+<p>再來 score 有三種算法:</p>
+<script type="math/tex; mode=display">
+\operatorname{score}\left(\boldsymbol{h}_{t}, \overline{\boldsymbol{h}}_{s}\right)=\left\{\begin{array}{ll}
+{\boldsymbol{h}_{t}^{\top} \overline{\boldsymbol{h}}_{s}} & {\text { dot }} \\
+{\boldsymbol{h}_{t}^{\top} \boldsymbol{W}_{a} \overline{\boldsymbol{h}}_{s}} & {\text { general }} \\
+{\boldsymbol{v}_{a}^{\top} \tanh \left(\boldsymbol{W}_{a}\left[\boldsymbol{h}_{t} ; \overline{\boldsymbol{h}}_{s}\right]\right)} & {\text { concat }}
+\end{array}\right.</script><p>$\boldsymbol{v}_{a}$ 和 $W_a$ 都是可訓練的</p>
+<p>圖 4 是擷取 <a href="https://pytorch.org/tutorials/beginner/chatbot_tutorial.html" target="_blank" rel="noopener">Pytorch chatbot tutorial</a> 的 code 來看計算 score 的部分</p>
+<center>
+    <figure>
+        <img alt="pytorch global attention score" data-src="https://i.imgur.com/PCvBwHe.png" class="lazyload">
+        <figcaption>
+            圖 4. attention score in Pytorch
+        </figcaption>
+    </figure>
+</center>
+
+<p>上面為 initialization 的部分，下面為 forward 部分</p>
+<p>最後是計算 context vector 的部分。將 alignment vector 和與之對應的 source hidden state 做 weighted-sum ，公式如下:</p>
+<script type="math/tex; mode=display">
+c=\sum \hat{\alpha}^{i} h^{i}</script><p>圖 5 為擷取<a href="https://www.youtube.com/channel/UC2ggjtuuWvxrHHHiaDH1dlQ" target="_blank" rel="noopener">台灣大學電機系李宏毅教授教學影片</a>關於 attention 的圖片</p>
+<center>
+    <figure>
+        <img alt="李宏毅教授 attention" data-src="https://i.imgur.com/E5a2iXf.png" class="lazyload">
+        <figcaption>
+            圖 5. 李宏毅教授 attention
+        </figcaption>
+    </figure>
+</center>
+
+<p>$h^1$ 與 $a_{0}^{1}$ 相乘….以此類推，之後加起來得到 context vector</p>
+<p>與 Bahdanau et al. 比較</p>
+<ol>
+<li><p>source hidden state 來源</p>
+<ul>
+<li>這篇 paper : top LSTM layer</li>
+<li>Bahdanau et al : concatenate bi-GRU 雙向的 hidden state</li>
+</ul>
+</li>
+<li><p>計算途徑</p>
+<ul>
+<li>這篇 paper : $h_{t} \rightarrow a_{t} \rightarrow$$c_{t} \rightarrow \tilde{h}_{t}$</li>
+<li>Bahdanau et al : $h_{t-1} \rightarrow a_{t} \rightarrow c_{t} \rightarrow h_{t}$，並又增加 maxout</li>
+</ul>
+</li>
+</ol>
+<h4 id="Local-attention"><a href="#Local-attention" class="headerlink" title="Local attention"></a>Local attention</h4><center>
+    <figure>
+        <img alt="local attention" data-src="https://i.imgur.com/ctZ1LwA.png" class="lazyload">
+        <figcaption>
+            圖 6. Local Attention 架構圖
+        </figcaption>
+    </figure>
+</center>
+
+<p>global attention 的問題</p>
+<ul>
+<li>缺點 : 預測每一個 target word 需要全部 source sentence 的詞</li>
+<li>造成的問題 : 成本太高且無法很好的翻譯較長的句子</li>
+<li>解決 : local attention</li>
+<li>作法 : 預測每一個 target word 只 focus 在 source sentence 的 subset</li>
+</ul>
+<p>local attention 每一個 time step 使用 alignment position $p_t$ 來當作 window 中心點。</p>
+<p>context vector 只 focus 在 window $\left[p_{1}-D, p_{1}+D\right]$，$D$ 是自己設定。</p>
+<p>不像 global attention ， alignment vector 這邊是 fixed-size，因為 size 都是 window size $2D+1$</p>
+<p>context vector 大概是這樣</p>
+<script type="math/tex; mode=display">
+c=\sum_{i}^{[p_{t-D}, p_{t+D}]} \hat{\alpha}^{i} h^{i}</script><p>那 alignment position 怎麼求?</p>
+<p>這篇 paper 提供兩種方法</p>
+<ul>
+<li>Monotonic alignment (local-m)</li>
+<li>Predictive alignment (local-p)</li>
+</ul>
+<p>Monotonic alignment 的 alignment position 是以 target word 的 time step</p>
+<script type="math/tex; mode=display">
+p_{t}=t</script><p>alignment vector 計算與 global attention 是一樣的</p>
+<p>Predictive alignment 的 alignment position 是用 neural network 來預測。公式如下</p>
+<p><img alt="alignment position 公式" data-src="https://i.imgur.com/nBI4W82.png" class="lazyload"></p>
+<p>$S$ 是 source sentence 長度，$v_p$、$W_p$ 是訓練參數</p>
+<p>由於 <code>sigmoid</code> 的值域在 $[0,1]$，因此 $p_{t} \in[0, S]$，且是 real number</p>
+<p>alignment vector 計算方法有不一樣的地方。如下:</p>
+<p><img alt="alignment vector 公式" data-src="https://i.imgur.com/I7mHNtn.png" class="lazyload"></p>
+<p>$\sigma=\frac{D}{2}$，$\overline{\boldsymbol{h}}_{s}$ 是 $h_{[pt−D, pt+D]}$</p>
+<p>因為要讓 $a_t$ 圍繞在 $p_t$ 附近，加上了高斯分佈</p>
+<center>
+    <figure>
+        <img alt="高斯分布" data-src="https://i.imgur.com/XEjZJWi.png" class="lazyload">
+        <figcaption>
+            圖 7. 高斯分布
+        </figcaption>
+    </figure>
+</center>
+
+<h3 id="Feeding-input"><a href="#Feeding-input" class="headerlink" title="Feeding input"></a>Feeding input</h3><center>
+    <figure>
+        <img alt="feeding input" data-src="https://i.imgur.com/lIPxPlG.png" class="lazyload">
+        <figcaption>
+            圖 8. Feeding Input
+        </figcaption>
+    </figure>
+</center>
+
+<p>將 attentional hidden state $\tilde{\boldsymbol{h}}_{t}$ 與 decoder input concatenate 一起丟入 decoder。</p>
+<p>好處</p>
+<ul>
+<li>了解先前的資訊，像是哪些字被翻譯了</li>
+<li>model 太大，不會資訊遺漏</li>
+</ul>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p>結果就不多說了</p>
+<center>
+    <figure>
+        <img alt="result" data-src="https://i.imgur.com/LX0krbE.png" class="lazyload">
+        <figcaption>
+            圖 9. Result
+        </figcaption>
+    </figure>
+</center>
+
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>dataset 為 English-German newstest2014</p>
+<h3 id="Long-Sentence"><a href="#Long-Sentence" class="headerlink" title="Long Sentence"></a>Long Sentence</h3><p>對於 long sentence 的比較圖</p>
+<center>
+    <figure>
+        <img alt="long sentence" data-src="https://i.imgur.com/uTWl0Kq.png" class="lazyload">
+        <figcaption>
+            圖 10. Long sentence 比較圖
+        </figcaption>
+    </figure>
+</center>
+
+<h3 id="Attentional-model-的選擇"><a href="#Attentional-model-的選擇" class="headerlink" title="Attentional model 的選擇"></a>Attentional model 的選擇</h3><center>
+    <figure>
+        <img alt="attentional model 比較圖" data-src="https://i.imgur.com/s6zfNus.png" class="lazyload">
+        <figcaption>
+            圖 11. attentional model 比較圖
+        </figcaption>
+    </figure>
+</center>
+
+<p>以下幾點是論文的分析</p>
+<ul>
+<li><code>concat</code> 方法無法得到好的 alignment vector，原因不明</li>
+<li><code>dot</code> 是 global 裡最好的</li>
+<li><code>general</code> 是 local 裡最好的</li>
+<li>local-p 是最好的</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Bahdanau, K. Cho, and Y. Bengio. 2015. Neural machine translation by<br>jointly learning to align and translate. In ICLR.</p>
+<p>[2] Kelvin Xu, Jimmy Ba, Ryan Kiros, Kyunghyun Cho, Aaron C. Courville, Ruslan Salakhutdinov, Richard S. Zemel, and Yoshua Bengio. 2015. Show, attend and tell: Neural image caption generation with visual attention. In ICML.</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">SineLin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章鏈接: </span><span class="post-copyright-info"><a href="/https:/sinlin0908.github.io/2019/12/19/python/nlp_paper/attention/">https://sinlin0908.github.io/2019/12/19/python/nlp_paper/attention/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版權聲明: </span><span class="post-copyright-info">本博客所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="https://sinlin0908.github.io" target="_blank">SineLin's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Paper/">Paper    </a><a class="post-meta__tags" href="/tags/NLP/">NLP    </a><a class="post-meta__tags" href="/tags/machine-translation/">machine translation    </a></div><div class="post_share"><div class="social-share" data-image="https://i.imgur.com/awmospk.png" data-sites="facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2018/02/12/python/python_learn/class-py/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>Python 物件</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 評論</span></div><div id="disqus_thread"></div><script>var unused = null;
+var disqus_config = function () {
+  this.page.url = 'https://sinlin0908.github.io/2019/12/19/python/nlp_paper/attention/';
+  this.page.identifier = '2019/12/19/python/nlp_paper/attention/';
+  this.page.title = 'Effective Approaches to Attention-based Neural Machine Translation 筆記';
+}
+var d = document, s = d.createElement('script');
+s.src = "https://" + 'SineLin-blog' +".disqus.com/embed.js";
+s.setAttribute('data-timestamp', '' + +new Date());
+(d.head || d.body).appendChild(s);</script></div></div></div><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2019 By SineLin</div><div class="framework-info"><span>Power by </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">welcome to my blog</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="閲讀模式"></i><i class="fa fa-plus" id="font_plus" title="放大字體"></i><i class="fa fa-minus" id="font_minus" title="縮小字體"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="簡繁轉換" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜間模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="設置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直達評論"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目錄" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到頂部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/js/third-party/canvas-nest.js"></script><script src="/js/tw_cn.js"></script><script>translateInitilization()
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
