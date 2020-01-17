@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sinlin0908.github.io/2019/12/19/python/nlp_paper/attention/</loc>
+    <loc>https://sinlin0908.github.io/2020/01/16/nlp_paper/transformer/</loc>
     
-    <lastmod>2019-12-19T17:33:58.134Z</lastmod>
+    <lastmod>2020-01-17T07:44:47.986Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://sinlin0908.github.io/2019/12/19/nlp_paper/attention/</loc>
+    
+    <lastmod>2019-12-19T17:33:45.000Z</lastmod>
     
   </url>
   
