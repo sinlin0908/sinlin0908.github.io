@@ -1,147 +1,1186 @@
-<!DOCTYPE html><html lang="zh-tw" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>SineLin's Blog</title><meta name="description" content="Sine's note"><meta name="keywords" content="pytorch, neural language processing, python"><meta name="author" content="SineLin"><meta name="copyright" content="SineLin"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="SineLin's Blog"><meta name="twitter:description" content="Sine's note"><meta name="twitter:image" content="https://sinlin0908.github.io/img/avatar.jpg"><meta property="og:type" content="website"><meta property="og:title" content="SineLin's Blog"><meta property="og:url" content="https://sinlin0908.github.io/"><meta property="og:site_name" content="SineLin's Blog"><meta property="og:description" content="Sine's note"><meta property="og:image" content="https://sinlin0908.github.io/img/avatar.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->const autoChangeMode = 'false'
-var t = Cookies.get("theme");
-if (autoChangeMode == '1'){
-const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
-const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
-const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
-const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=P7c9RgvEG2RKPOdmtXOjtvj9X3q_nHrc9iAhQ1ygivE">
 
-if (t === undefined){
-  if (isLightMode) activateLightMode()
-  else if (isDarkMode) activateDarkMode()
-  else if (isNotSpecified || hasNoSupport){
-    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
-    now = new Date();
-    hour = now.getHours();
-    isNight = hour < 6 || hour >= 18
-    isNight ? activateDarkMode() : activateLightMode()
-}
-} else if (t == 'light') activateLightMode()
-else activateDarkMode()
+<link rel="stylesheet" href="/css/main.css">
 
 
-} else if (autoChangeMode == '2'){
-  now = new Date();
-  hour = now.getHours();
-  isNight = hour < 6 || hour >= 18
-  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
-  else if (t === 'light') activateLightMode()
-  else activateDarkMode() 
-} else {
-  if ( t == 'dark' ) activateDarkMode()
-  else if ( t == 'light') activateLightMode()
-}
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-function activateDarkMode(){
-  document.documentElement.setAttribute('data-theme', 'dark')
-  if (document.querySelector('meta[name="theme-color"]') !== null){
-    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
-  }
-}
-function activateLightMode(){
-  document.documentElement.setAttribute('data-theme', 'light')
-  if (document.querySelector('meta[name="theme-color"]') !== null){
-  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
-  }
-}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="canonical" href="https://sinlin0908.github.io/"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-154354898-1', 'auto');
-ga('send', 'pageview');
-</script><link rel="preload" href="/img/banner1.png" as="image"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
-  highlight_copy: 'false',
-  highlight_lang: 'true',
-  highlight_shrink: 'false',
-  copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
-  },
-  bookmark: {
-    title: 'Snackbar.bookmark.title',
-    message_prev: 'Press',
-    message_next: 'to bookmark this page'
-  },
-  runtime_unit: 'days',
-  copyright: undefined,
-  copy_copyright_js: false,
-  ClickShowText: undefined,
-  medium_zoom: 'true',
-  Snackbar: undefined
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://sinlin0908.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Sine&#39;s note">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SineLin&#39;s Blog">
+<meta property="og:url" content="https:&#x2F;&#x2F;sinlin0908.github.io&#x2F;index.html">
+<meta property="og:site_name" content="SineLin&#39;s Blog">
+<meta property="og:description" content="Sine&#39;s note">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="SineLin">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content=" neural language processing">
+<meta property="article:tag" content=" python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sinlin0908.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>SineLin's Blog</title>
   
-}</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-154354898-1"></script><script>window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
 
-gtag('config', 'UA-154354898-1');</script><meta name="generator" content="Hexo 4.1.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div id="header"> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">SineLin's Blog</a></span><i class="fa fa-bars fa-fw toggle-menu pull_right close" aria-hidden="true"></i><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div></div></span><span class="pull_right" id="search_button"></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lazyload avatar_img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is_center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is_center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">6</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><nav class="full_page" id="nav"><div class="nav_bg" style="background-image: url(/img/banner1.png)"></div><div id="site-info"><div id="site-title"><span class="blogtitle">SineLin's Blog</span></div><div id="site-sub-title"><span class="subtitle"></span></div><div id="site-social-icons"><a class="social-icon" href="https://github.com/sinlin0908" target="_blank"><i class="fa fa-github"></i></a><a class="social-icon" href="z970485888@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a><a class="social-icon" href="https://www.facebook.com/xia.shu.12" target="_blank"><i class="fa fa-facebook"></i></a></div></div><div class="scroll-down"><i class="fa fa-angle-down scroll-down-effects"></i></div></nav><div id="content-outer"><div class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item article-container"><div class="post_cover pull_left left_radius"><a href="/2018/01/23/hello-word/" title="hello_world"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2018/01/23/hello-word/" title="hello_world">hello_world</a><span class="article-meta"><i class="fa fa-thumb-tack article-meta__icon sticky"></i><span class="sticky">Sticky</span><span class="article-meta__separator" style="margin-right: 0.3rem">|</span></span><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-01-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/%E8%87%AA%E6%88%91%E4%BB%8B%E7%B4%B9/">自我介紹</a></span><div class="content"><!-- hexo-inject:begin --><!-- hexo-inject:end -->Hello EveryBody我是 SinLin這裡紀錄著我的學習歷程與生活點滴
-讓生活不留白
-</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_right right_radius"><a href="/2020/01/19/RWD/RWD-three-column/" title="RWD 三欄式版面"><img class="post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2020/01/19/RWD/RWD-three-column/" title="RWD 三欄式版面">RWD 三欄式版面</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RWD/">RWD</a></span><div class="content">!!貼心提醒: 可以由右下角齒輪設定將文章轉成簡體字
-如有錯誤，請留言提醒，謝謝 ^^
-三欄式遇上手機平板時的更動使用 media query 以及寬度使用百分比
-不用而外全部寫一個 for 手機或平版的 css
-1*&#123;2  margin: 0;3  padding: 0;4  box-s ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_left left_radius"><a href="/2020/01/19/RWD/RWD-two-column/" title="RWD 兩欄式版面"><img class="post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2020/01/19/RWD/RWD-two-column/" title="RWD 兩欄式版面">RWD 兩欄式版面</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RWD/">RWD</a></span><div class="content">!!貼心提醒: 可以由右下角齒輪設定將文章轉成簡體字
-如有錯誤，請留言提醒，謝謝 ^^
-正文電腦螢幕時，固定 menu 寬度，content 自適應寬度平版、手機時，變單欄式
-1&lt;div class="wrap"&gt;2        &lt;div class="menu"&gt;3    ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_right right_radius"><a href="/2020/01/19/RWD/RWD-max-width/" title="RWD 版面"><img class="post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2020/01/19/RWD/RWD-max-width/" title="RWD 版面">RWD 版面</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RWD/">RWD</a></span><div class="content">!!貼心提醒: 可以由右下角齒輪設定將文章轉成簡體字
-如有錯誤，請留言提醒，謝謝 ^^
-RWD 版面注意事項在寫 RWD 的時候盡量不要產生 x 軸滾輪，如下範例
-1body&#123;2  width: 850px;3&#125;
 
-會讓 user 不方便RWD 通常只會上下滑動
-max-widt ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_left left_radius"><a href="/2020/01/19/RWD/RWD-media-query/" title="Media Query"><img class="post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2020/01/19/RWD/RWD-media-query/" title="Media Query">Media Query</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RWD/">RWD</a></span><div class="content">!!貼心提醒: 可以由右下角齒輪設定將文章轉成簡體字
-如有錯誤，請留言提醒，謝謝 ^^
-Media querymedia query 用來解決不同寬度下的 CSS
-html
-1&lt;!DOCTYPE html&gt;2&lt;html lang="zh"&gt;3  &lt;head&gt;4   ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_right right_radius"><a href="/2020/01/19/RWD/RWD-enviro/" title="RWD 環境建設"><img class="post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2020/01/19/RWD/RWD-enviro/" title="RWD 環境建設">RWD 環境建設</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RWD/">RWD</a></span><div class="content">!!貼心提醒: 可以由右下角齒輪設定將文章轉成簡體字
-如有錯誤，請留言提醒，謝謝 ^^
-RWD 起手式1&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
 
-功用 : 強制把手機螢幕解析度轉成  ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_left left_radius"><a href="/2020/01/16/nlp_paper/transformer/" title="Attention is all you need 筆記"><img class="post_bg lazyload" data-src="https://i.imgur.com/aALmU0P.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2020/01/16/nlp_paper/transformer/" title="Attention is all you need 筆記">Attention is all you need 筆記</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-16</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Paper-Note/">Paper Note</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Paper-Note/NLP/">NLP</a></span><div class="content">!!貼心提醒: 可以由右下角齒輪設定將文章轉成簡體字
-如有錯誤，請留言提醒，謝謝 ^^
-Attention Is All You Need paper link
-前言Facebook 推出 Convolutional Sequence to Sequence [1] 架構使用 CNN 平行運算的效果 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_right right_radius"><a href="/2019/12/19/nlp_paper/attention/" title="Effective Approaches to Attention-based Neural Machine Translation 筆記"><img class="post_bg lazyload" data-src="https://i.imgur.com/awmospk.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/12/19/nlp_paper/attention/" title="Effective Approaches to Attention-based Neural Machine Translation 筆記">Effective Approaches to Attention-based Neural Machine Translation 筆記</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Paper-Note/">Paper Note</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Paper-Note/NLP/">NLP</a></span><div class="content">Paper 連結
-!!貼心提醒: 可以由右下角齒輪設定將文章轉成簡體字
-如有錯誤，請留言提醒，謝謝 ^^
-前言Luong 等人提出兩種新的 attention 機制 : global、local。
 
-global : 每次注意全部 source sentence 的詞
-local : 每個時間點，只 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_left left_radius"><a href="/2018/02/12/python/python_learn/class-py/" title="Python 物件"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2018/02/12/python/python_learn/class-py/" title="Python 物件">Python 物件</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/python/">python</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/python/%E8%AA%9E%E6%B3%95%E5%AD%B8%E7%BF%92/">語法學習</a></span><div class="content">今天要來看 Python 的物件導向，其實我在大二上的物件導向課的內容都快忘光光了，所以這個篇文章可能不太詳細。
-什麼是物件物件裡面有 data (通常為變數，稱為屬性) 與 方法or動作 (通常為 function)，代表一個具體的東西。
-其實我覺得很難解釋和表達這個名詞，我是這麼想的，就像我，我 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover pull_right right_radius"><a href="/2018/02/10/python/python_learn/file/" title="Python 檔案處理"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'"></a></div><div class="recent-post-info">  <a class="article-title" href="/2018/02/10/python/python_learn/file/" title="Python 檔案處理">Python 檔案處理</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-10</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/python/">python</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/python/%E8%AA%9E%E6%B3%95%E5%AD%B8%E7%BF%92/">語法學習</a></span><div class="content">這篇我們來看看檔案的處理
-Open &amp; close我們要做檔案讀寫時，一定要相進行開啟檔案，我們使用 open()
 
-fileobj = open(filename,mode=’r’,encoding=None)
 
-fileobj : 是接 open( ) return 的檔案物件
-mode ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card_widget card-author"><div class="card-content"><div class="post_data"><div class="data-item is_center"><img class="lazyload avatar_img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'"><p class="author-info__name is_center">SineLin</p><p class="author-info__description is_center">Sine's note</p></div></div><div class="post_data data_config"><div class="data-item is_center"><div class="data_link"><a href="/archives/"><p class="headline">Articles</p><p class="length_num">22</p></a></div></div><div class="data-item is_center">      <div class="data_link"><a href="/tags/"><p class="headline">Tags</p><p class="length_num">7</p></a></div></div><div class="data-item is_center">     <div class="data_link"><a href="/categories/"><p class="headline">Categories</p><p class="length_num">6</p></a></div></div></div><div class="post_data is_center"><a class="data-item bookmark bookmarke--primary bookmark--animated" id="bookmark-it" href="javascript:;" title="Add to bookmark" target="_self"><i class="fa fa-bookmark" aria-hidden="true"></i><span>Add to bookmark</span></a></div><div class="post_data data_config"><div id="aside-social-icons"> <a class="social-icon data-item" href="https://github.com/sinlin0908" target="_blank"><i class="fa fa-github"></i></a><a class="social-icon data-item" href="z970485888@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a><a class="social-icon data-item" href="https://www.facebook.com/xia.shu.12" target="_blank"><i class="fa fa-facebook"></i></a></div></div></div></div><div class="card_widget card-announcement"><div class="card-content"><div class="item_headline"><i class="fa fa-bullhorn card-announcement-animation" aria-hidden="true"></i><span>Announcement</span></div><div class="announcement_content">感謝訪問本站，若喜歡請收藏 ^_^</div></div></div><div class="card_widget card-recent-post"><div class="card-content"><div class="item_headline"><i class="fa fa-history" aria-hidden="true"></i><span>Recent Post</span></div><div class="aside_recent_item"><div class="aside_recent_post"><a href="/2020/01/19/RWD/RWD-three-column/"><div class="aside_post_cover"><img class="aside_post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'" title="RWD 三欄式版面"></div><div id="aside_title"><div class="aside_post_title" href="/2020/01/19/RWD/RWD-three-column/" title="RWD 三欄式版面">RWD 三欄式版面</div><time class="aside_post_meta post-meta__date">2020-01-19</time></div></a></div><div class="aside_recent_post"><a href="/2020/01/19/RWD/RWD-two-column/"><div class="aside_post_cover"><img class="aside_post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'" title="RWD 兩欄式版面"></div><div id="aside_title"><div class="aside_post_title" href="/2020/01/19/RWD/RWD-two-column/" title="RWD 兩欄式版面">RWD 兩欄式版面</div><time class="aside_post_meta post-meta__date">2020-01-19</time></div></a></div><div class="aside_recent_post"><a href="/2020/01/19/RWD/RWD-max-width/"><div class="aside_post_cover"><img class="aside_post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'" title="RWD 版面"></div><div id="aside_title"><div class="aside_post_title" href="/2020/01/19/RWD/RWD-max-width/" title="RWD 版面">RWD 版面</div><time class="aside_post_meta post-meta__date">2020-01-19</time></div></a></div><div class="aside_recent_post"><a href="/2020/01/19/RWD/RWD-media-query/"><div class="aside_post_cover"><img class="aside_post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'" title="Media Query"></div><div id="aside_title"><div class="aside_post_title" href="/2020/01/19/RWD/RWD-media-query/" title="Media Query">Media Query</div><time class="aside_post_meta post-meta__date">2020-01-19</time></div></a></div><div class="aside_recent_post"><a href="/2020/01/19/RWD/RWD-enviro/"><div class="aside_post_cover"><img class="aside_post_bg lazyload" data-src="https://i.imgur.com/B07Hmhy.png" onerror="onerror=null;src='/img/404.jpg'" title="RWD 環境建設"></div><div id="aside_title"><div class="aside_post_title" href="/2020/01/19/RWD/RWD-enviro/" title="RWD 環境建設">RWD 環境建設</div><time class="aside_post_meta post-meta__date">2020-01-19</time></div></a></div></div></div></div><div class="card_widget card-categories"><div class="card-content"><div class="item_headline"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Categories</span></div><ul class="aside_category_item">       <li class="aside_category_list"><a class="aside_category_list_link" href="/categories/Paper-Note/"><span class="aside_category_list_name">Paper Note</span><span class="aside_category_list_length">2</span></a></li><ul class="aside_category_item child"><li class="aside_category_list"><a class="aside_category_list_link" href="/categories/Paper-Note/NLP/"><span class="aside_category_list_name">NLP</span><span class="aside_category_list_length">2</span></a></li></ul><li class="aside_category_list"><a class="aside_category_list_link" href="/categories/RWD/"><span class="aside_category_list_name">RWD</span><span class="aside_category_list_length">5</span></a></li><li class="aside_category_list"><a class="aside_category_list_link" href="/categories/python/"><span class="aside_category_list_name">python</span><span class="aside_category_list_length">14</span></a></li><ul class="aside_category_item child"><li class="aside_category_list"><a class="aside_category_list_link" href="/categories/python/%E8%AA%9E%E6%B3%95%E5%AD%B8%E7%BF%92/"><span class="aside_category_list_name">語法學習</span><span class="aside_category_list_length">14</span></a></li></ul><li class="aside_category_list"><a class="aside_category_list_link" href="/categories/%E8%87%AA%E6%88%91%E4%BB%8B%E7%B4%B9/"><span class="aside_category_list_name">自我介紹</span><span class="aside_category_list_length">1</span></a></li></ul></div></div><div class="card_widget card-tags"><div class="card-content"><div class="item_headline"><i class="fa fa-tags" aria-hidden="true"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/NLP/" style="font-size: 18.67px; color: #666">NLP</a> <a href="/tags/Paper/" style="font-size: 18.67px; color: #666">Paper</a> <a href="/tags/RWD/" style="font-size: 21.33px; color: #333">RWD</a> <a href="/tags/machine-translation/" style="font-size: 18.67px; color: #666">machine translation</a> <a href="/tags/python/" style="font-size: 24px; color: #000">python</a> <a href="/tags/web/" style="font-size: 21.33px; color: #333">web</a> <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%B4%B9/" style="font-size: 16px; color: #999">自我介紹</a></div></div></div><div class="card_widget card-archives"><div class="card-content"><div class="item_headline"><i class="fa fa-archive" aria-hidden="true"></i><span>Archives</span></div><div class="archives_item"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">2020年01月<span class="archive-list-count">6</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019年12月<span class="archive-list-count">1</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月<span class="archive-list-count">4</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月<span class="archive-list-count">11</span></a></li></ul></div></div></div><div class="card_widget card-webinfo"><div class="card-content"><div class="item_headline"><i class="fa fa-line-chart" aria-hidden="true"></i><span>Info</span></div><div class="webinfo"><div class="webinfo_item"><div class="webinfo_article_name">Article :</div><div class="webinfo_article_count">22</div></div><div class="webinfo_item"><div class="webinfo_runtime_name">Run time :</div><div class="webinfo_runtime_count" id="webinfo_runtime_count"></div><script id="runtionshow" src="/js/runtimeshow.js" start_date="1/23/2018 00:00:00">      </script></div><div class="webinfo_item">      <div class="webinfo_site_uv_name">UV :</div><div class="webinfo_site_uv_count" id="busuanzi_value_site_uv"></div></div><div class="webinfo_item"><div class="webinfo_site_name">PV :</div><div class="webinfo_site_pv_count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></div></div><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2020 By SineLin</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">welcome to my blog</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/js/third-party/canvas-nest.js"></script><script src="/js/tw_cn.js"></script><script>translateInitilization()
-</script><script>if (/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {} else {
-  $('.full_page .nav_bg').css('background-attachment', 'fixed');
-}
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
-</script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var typed = new Typed(".subtitle", {
-strings: '今日事&#44;今日畢,Never put off till tomorrow what you can do today'.split(","),
-startDelay: 300,
-typeSpeed: 100,
-loop: true,
-backSpeed: 50
-});
-</script><script>//首頁fullpage
-function alignContent() {
-  for (var n = $(window).height(), e = document.querySelectorAll(".full_page"), i = 0; i < e.length; i++) 
-    e[i].style.height = n + "px";
-    $("#site-info").each(function () {
-      var x = $(this).height();
-      $(this).css("top", (n-x)/2)       
-    })
-}
-alignContent();
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-$(window).bind("resize", function () {
-  alignContent()
-})</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SineLin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2018/01/23/hello-word/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/01/23/hello-word/" class="post-title-link" itemprop="url">hello_world</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2018-01-23 18:54:44" itemprop="dateCreated datePublished" datetime="2018-01-23T18:54:44+08:00">2018-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2019-12-10 00:50:57" itemprop="dateModified" datetime="2019-12-10T00:50:57+08:00">2019-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%87%AA%E6%88%91%E4%BB%8B%E7%B4%B9/" itemprop="url" rel="index">
+                    <span itemprop="name">自我介紹</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Hello EveryBody<br>我是 SinLin<br>這裡紀錄著我的學習歷程與生活點滴</p>
+<p>讓生活不留白</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2020/01/19/RWD/RWD-three-column/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/19/RWD/RWD-three-column/" class="post-title-link" itemprop="url">RWD 三欄式版面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-01-19 16:45:41 / 修改時間：16:49:54" itemprop="dateCreated datePublished" datetime="2020-01-19T16:45:41+08:00">2020-01-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RWD/" itemprop="url" rel="index">
+                    <span itemprop="name">RWD</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          RWD 三欄式版面
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/19/RWD/RWD-three-column/">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2020/01/19/RWD/RWD-two-column/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/19/RWD/RWD-two-column/" class="post-title-link" itemprop="url">RWD 兩欄式版面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-01-19 16:45:41 / 修改時間：16:49:58" itemprop="dateCreated datePublished" datetime="2020-01-19T16:45:41+08:00">2020-01-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RWD/" itemprop="url" rel="index">
+                    <span itemprop="name">RWD</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          RWD 兩欄式版面
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/19/RWD/RWD-two-column/">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2020/01/19/RWD/RWD-max-width/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/19/RWD/RWD-max-width/" class="post-title-link" itemprop="url">RWD 版面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-01-19 16:40:41 / 修改時間：16:55:06" itemprop="dateCreated datePublished" datetime="2020-01-19T16:40:41+08:00">2020-01-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RWD/" itemprop="url" rel="index">
+                    <span itemprop="name">RWD</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          RWD max-width 筆記
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/19/RWD/RWD-max-width/">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2020/01/19/RWD/RWD-media-query/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/19/RWD/RWD-media-query/" class="post-title-link" itemprop="url">Media Query</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-01-19 16:30:41 / 修改時間：16:49:51" itemprop="dateCreated datePublished" datetime="2020-01-19T16:30:41+08:00">2020-01-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RWD/" itemprop="url" rel="index">
+                    <span itemprop="name">RWD</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          RWD, Media Query
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/19/RWD/RWD-media-query/">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2020/01/19/RWD/RWD-enviro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/19/RWD/RWD-enviro/" class="post-title-link" itemprop="url">RWD 環境建設</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2020-01-19 16:28:41 / 修改時間：16:50:00" itemprop="dateCreated datePublished" datetime="2020-01-19T16:28:41+08:00">2020-01-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RWD/" itemprop="url" rel="index">
+                    <span itemprop="name">RWD</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          RWD 環境建設
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/19/RWD/RWD-enviro/">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2020/01/16/nlp_paper/transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/nlp_paper/transformer/" class="post-title-link" itemprop="url">Attention is all you need 筆記</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-01-16 20:47:41" itemprop="dateCreated datePublished" datetime="2020-01-16T20:47:41+08:00">2020-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-01-17 15:44:47" itemprop="dateModified" datetime="2020-01-17T15:44:47+08:00">2020-01-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper-Note/" itemprop="url" rel="index">
+                    <span itemprop="name">Paper Note</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper-Note/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          Attention is all you need 筆記
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/16/nlp_paper/transformer/">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2019/12/19/nlp_paper/attention/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/19/nlp_paper/attention/" class="post-title-link" itemprop="url">Effective Approaches to Attention-based Neural Machine Translation 筆記</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2019-12-19 16:39:41" itemprop="dateCreated datePublished" datetime="2019-12-19T16:39:41+08:00">2019-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2019-12-20 01:33:45" itemprop="dateModified" datetime="2019-12-20T01:33:45+08:00">2019-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper-Note/" itemprop="url" rel="index">
+                    <span itemprop="name">Paper Note</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper-Note/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          Effective Approaches to Attention-based Neural Machine Translation 閱讀筆記
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/19/nlp_paper/attention/">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2018/02/12/python/python_learn/class-py/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/12/python/python_learn/class-py/" class="post-title-link" itemprop="url">Python 物件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2018-02-12 16:52:30" itemprop="dateCreated datePublished" datetime="2018-02-12T16:52:30+08:00">2018-02-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2019-12-10 00:56:46" itemprop="dateModified" datetime="2019-12-10T00:56:46+08:00">2019-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/%E8%AA%9E%E6%B3%95%E5%AD%B8%E7%BF%92/" itemprop="url" rel="index">
+                    <span itemprop="name">語法學習</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天要來看 Python 的物件導向，其實我在大二上的物件導向課的內容都快忘光光了，所以這個篇文章可能不太詳細。</p>
+<h2 id="什麼是物件"><a href="#什麼是物件" class="headerlink" title="什麼是物件"></a>什麼是物件</h2><p>物件裡面有 data (通常為變數，稱為屬性) 與 方法or動作 (通常為 function)，代表一個具體的東西。</p>
+<p>其實我覺得很難解釋和表達這個名詞，我是這麼想的，就像我，我是一個人，人一定有身高體重，然後人會走路和跳舞等等的動作，我就是一個物件的概念。身高體重就是 data，動作就是 function。那 class 就是定義人這個名詞，則是比較抽象的。</p>
+<p>或者像是 Python 裡面 <code>String</code> 這個變數型態就是一個 <code>class</code>，而我們創建的字串(<code>str(96)</code>)就是一個物件，它的屬性就是字串內容(<code>&#39;96&#39;</code>)和 type ，而方法就是它裡面內建的 function。</p>
+<p>好吧，有解釋跟沒解釋一樣，等到我比較了解再來更改好了。<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/02/12/python/python_learn/class-py/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2018/02/10/python/python_learn/file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/10/python/python_learn/file/" class="post-title-link" itemprop="url">Python 檔案處理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2018-02-10 17:06:53" itemprop="dateCreated datePublished" datetime="2018-02-10T17:06:53+08:00">2018-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2019-12-10 00:50:05" itemprop="dateModified" datetime="2019-12-10T00:50:05+08:00">2019-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/%E8%AA%9E%E6%B3%95%E5%AD%B8%E7%BF%92/" itemprop="url" rel="index">
+                    <span itemprop="name">語法學習</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>這篇我們來看看檔案的處理</p>
+<h2 id="Open-amp-close"><a href="#Open-amp-close" class="headerlink" title="Open &amp; close"></a>Open &amp; close</h2><p>我們要做檔案讀寫時，一定要相進行開啟檔案，我們使用 <code>open()</code></p>
+<blockquote>
+<p>fileobj = open(filename,mode=’r’,encoding=None)</p>
+<ol>
+<li>fileobj : 是接 open( ) return 的檔案物件</li>
+<li>mode: 來指定檔案權限</li>
+<li>encoding: 編碼
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/02/10/python/python_learn/file/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一頁"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SineLin</p>
+  <div class="site-description" itemprop="description">Sine's note</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SineLin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.1.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
