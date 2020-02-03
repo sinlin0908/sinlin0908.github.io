@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sinlin0908.github.io/2020/01/19/RWD/RWD-max-width/</loc>
+    
+    <lastmod>2020-02-03T09:53:38.041Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sinlin0908.github.io/2020/01/16/nlp_paper/transformer/</loc>
     
     <lastmod>2020-02-03T09:50:55.605Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://sinlin0908.github.io/2020/01/19/RWD/RWD-media-query/</loc>
     
     <lastmod>2020-02-03T09:50:37.240Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://sinlin0908.github.io/2020/01/19/RWD/RWD-max-width/</loc>
-    
-    <lastmod>2020-02-03T09:50:33.523Z</lastmod>
     
   </url>
   
@@ -163,14 +163,14 @@
   </url>
   
   <url>
-    <loc>https://sinlin0908.github.io/categories/index.html</loc>
+    <loc>https://sinlin0908.github.io/about/index.html</loc>
     
     <lastmod>2019-12-09T16:39:50.757Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://sinlin0908.github.io/about/index.html</loc>
+    <loc>https://sinlin0908.github.io/categories/index.html</loc>
     
     <lastmod>2019-12-09T16:39:50.757Z</lastmod>
     
