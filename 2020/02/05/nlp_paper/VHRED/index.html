@@ -71,7 +71,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;fgu2iuD.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;kHcRk0Y.png">
 <meta property="article:published_time" content="2020-02-04T16:41:30.000Z">
-<meta property="article:modified_time" content="2020-02-04T17:13:46.631Z">
+<meta property="article:modified_time" content="2020-02-05T02:12:09.056Z">
 <meta property="article:author" content="SineLin">
 <meta property="article:tag" content="A Hierarchical Latent Variable Encoder-Decoder Model for Generating Dialogues">
 <meta property="article:tag" content=" VHRED">
@@ -239,7 +239,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2020-02-05 00:41:30 / 修改時間：01:13:46" itemprop="dateCreated datePublished" datetime="2020-02-05T00:41:30+08:00">2020-02-05</time>
+              <time title="創建時間：2020-02-05 00:41:30 / 修改時間：10:12:09" itemprop="dateCreated datePublished" datetime="2020-02-05T00:41:30+08:00">2020-02-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -383,7 +383,7 @@ P_{\theta}\left(\mathbf{w}_{n} | \mathbf{z}_{n}, \mathbf{w}_{1}, \ldots, \mathbf
 P_{\theta}\left(\mathbf{z}_{n} | \mathbf{w}_{1}, \ldots, \mathbf{w}_{n-1}\right)=\mathcal{N}\left(\boldsymbol{\mu}_{\text {prior }}\left(\mathbf{w}_{1}, \ldots, \mathbf{w}_{n-1}\right), \Sigma_{\text {prior }}\left(\mathbf{w}_{1}, \ldots, \mathbf{w}_{n-1}\right)\right)</script><p>如前情提要，使用 NN 來計算 $\mu$ 和 $\Sigma$</p>
 <p>將 context RNN 的 fixed-size vector 輸入至 2-layer feed forward neural network，並使用 tanh 當作 activate function，公式如下:</p>
 <script type="math/tex; mode=display">
-\bar{h}\_{t, c o n}=\tanh \left(H_{l_{2}, \text {prior}} \tanh \left(H\_{l_{1}, \text {prior}} h\_{t, c o n}+b\_{l\_{1}, \text {prior}}\right)+b\_{l\_{2}, \text {prior}}\right)</script><p>$h_{t, \operatorname{con}} \in \mathbb{R}^{d_{h, c o n}}$ 為 context RNN 的 hidden state, $H$ 為 feed forward network 參數</p>
+\bar{h}_{t, c o n}=\tanh \left(H_{l_{2}, \text {prior}} \tanh \left(H_{l_{1}, \text {prior}} h_{t, c o n}+b_{l_{1}, \text {prior}}\right)+b_{l_{2}, \text {prior}}\right)</script><p>$h_{t, \operatorname{con}} \in \mathbb{R}^{d_{h, c o n}}$ 為 context RNN 的 hidden state, $H$ 為 feed forward network 參數</p>
 <p>mean 與 covariance matrix 如下:</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
@@ -502,8 +502,8 @@ Q_{\psi}\left(\mathbf{z}_{n} | \mathbf{w}_{1}, \ldots, \mathbf{w}_{N}\right)=Q_{
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/19/RWD/RWD-two-column/" rel="prev" title="RWD 兩欄式版面">
-      <i class="fa fa-chevron-left"></i> RWD 兩欄式版面
+    <a href="/2020/01/19/RWD/RWD-three-column/" rel="prev" title="RWD 三欄式版面">
+      <i class="fa fa-chevron-left"></i> RWD 三欄式版面
     </a></div>
       <div class="post-nav-item"></div>
     </div>
