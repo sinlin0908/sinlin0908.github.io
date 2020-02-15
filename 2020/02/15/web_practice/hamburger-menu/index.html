@@ -69,7 +69,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;BJZ46Bs.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;owK8sA3.png">
 <meta property="article:published_time" content="2020-02-15T03:27:44.000Z">
-<meta property="article:modified_time" content="2020-02-15T16:39:27.101Z">
+<meta property="article:modified_time" content="2020-02-15T16:43:51.738Z">
 <meta property="article:author" content="SineLin">
 <meta property="article:tag" content="漢堡選單 hamburger menu">
 <meta property="article:tag" content="漢堡選單">
@@ -246,7 +246,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-02-16 00:39:27" itemprop="dateModified" datetime="2020-02-16T00:39:27+08:00">2020-02-16</time>
+                <time title="修改時間：2020-02-16 00:43:51" itemprop="dateModified" datetime="2020-02-16T00:43:51+08:00">2020-02-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -322,7 +322,7 @@
 <p>想法為 : 當 <code>checkbox</code> ckecked 時，menu transform 到原來的地方</p>
 <p><code>checkbox</code> 其實可以應用很多地方，尤其是有 <code>if else</code> 概念的時候，像是滑動按鈕</p>
 <p><code>.menu</code> 加上 <code>transition</code> 看起來比較好看</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.menu</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">transition</span>: <span class="number">0.5s</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#menu-switcher</span><span class="selector-pseudo">:checked</span> ~ <span class="selector-class">.menu</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0%);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.menu</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-100%);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">transition</span>: <span class="number">0.5s</span>; <span class="comment">/* new */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#menu-switcher</span><span class="selector-pseudo">:checked</span> ~ <span class="selector-class">.menu</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0%);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/KEvg8Xf.gif" alt="收放動畫"></p>
 <h3 id="隱藏畫面上的-checkbox"><a href="#隱藏畫面上的-checkbox" class="headerlink" title="隱藏畫面上的 checkbox"></a>隱藏畫面上的 checkbox</h3><p>最後一步隱藏 <code>checkbox</code></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#menu-switcher</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">display</span>: none;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
