@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sinlin0908.github.io/2019/12/19/nlp_paper/attention/</loc>
+    
+    <lastmod>2020-02-18T15:08:54.393Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sinlin0908.github.io/2020/02/15/web_practice/hamburger-menu/</loc>
     
     <lastmod>2020-02-15T16:43:51.738Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://sinlin0908.github.io/2020/01/16/nlp_paper/transformer/</loc>
     
     <lastmod>2020-02-03T09:50:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://sinlin0908.github.io/2019/12/19/nlp_paper/attention/</loc>
-    
-    <lastmod>2020-02-03T09:50:51.000Z</lastmod>
     
   </url>
   
