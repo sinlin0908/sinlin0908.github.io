@@ -49,22 +49,23 @@
   };
 </script>
 
-  <meta name="description" content="Sine&#39;s note">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https:&#x2F;&#x2F;sinlin0908.github.io&#x2F;tags&#x2F;index.html">
+  <meta name="description" content="Leetcode 13. Roman to Integer 解題">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode - 13. Roman to Integer">
+<meta property="og:url" content="https:&#x2F;&#x2F;sinlin0908.github.io&#x2F;2020&#x2F;02&#x2F;22&#x2F;leetcode&#x2F;leetcode-Roman-to-Integer&#x2F;index.html">
 <meta property="og:site_name" content="SineLin&#39;s Blog">
-<meta property="og:description" content="Sine&#39;s note">
+<meta property="og:description" content="Leetcode 13. Roman to Integer 解題">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2018-01-23T11:16:45.000Z">
-<meta property="article:modified_time" content="2019-12-09T16:39:50.000Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;HjOcAXl.png">
+<meta property="article:published_time" content="2020-02-22T12:53:41.000Z">
+<meta property="article:modified_time" content="2020-02-22T12:56:23.240Z">
 <meta property="article:author" content="SineLin">
-<meta property="article:tag" content="pytorch">
-<meta property="article:tag" content=" neural language processing">
-<meta property="article:tag" content=" python">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content=" Roman to Integer">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;HjOcAXl.png">
 
-<link rel="canonical" href="https://sinlin0908.github.io/tags/">
+<link rel="canonical" href="https://sinlin0908.github.io/2020/02/22/leetcode/leetcode-Roman-to-Integer/">
 
 
 <script id="page-configurations">
@@ -72,12 +73,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>tags | SineLin's Blog
-  </title>
+  <title>Leetcode - 13. Roman to Integer | SineLin's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154354898-1"></script>
     <script>
@@ -193,52 +193,125 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-TW">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://sinlin0908.github.io/2020/02/22/leetcode/leetcode-Roman-to-Integer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="SineLin">
+      <meta itemprop="description" content="Sine's note">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SineLin's Blog">
+    </span>
       <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Leetcode - 13. Roman to Integer
+        </h2>
 
-<h2 class="post-title" itemprop="name headline">tags
-</h2>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
 
-<div class="post-meta">
+              <time title="創建時間：2020-02-22 20:53:41 / 修改時間：20:56:23" itemprop="dateCreated datePublished" datetime="2020-02-22T20:53:41+08:00">2020-02-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/02/22/leetcode/leetcode-Roman-to-Integer/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/22/leetcode/leetcode-Roman-to-Integer/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">Leetcode 13. Roman to Integer 解題</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://leetcode.com/problems/roman-to-integer/" target="_blank" rel="noopener">題目連結</a></p>
+<p>程式語言 : python</p>
+<h2 id="解題構思"><a href="#解題構思" class="headerlink" title="解題構思"></a>解題構思</h2><p>這題的解題思維有兩個部分</p>
+<ol>
+<li>一看到有對應部分 -&gt; hash table</li>
+<li><p>羅馬字符遇到成對 “ab” 時有兩種狀況</p>
+<ul>
+<li>a &gt;= b， 則 ans = a + b，Ex: “III” = 3、”XI” = 11</li>
+<li>b &gt; a， 則 ans = a + b - 2 * a，Ex: “IX” = 1 + 10 - 2* 1 = 9</li>
+</ul>
+</li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">romanToInt</span><span class="params">(self, s: str)</span> -&gt; int:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        roman_map = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            <span class="string">"I"</span>:<span class="number">1</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            <span class="string">"V"</span>:<span class="number">5</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            <span class="string">"X"</span>:<span class="number">10</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            <span class="string">"L"</span>:<span class="number">50</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            <span class="string">"C"</span>:<span class="number">100</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            <span class="string">"D"</span>:<span class="number">500</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            <span class="string">"M"</span>:<span class="number">1000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        last_num =<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        total = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> roman <span class="keyword">in</span> s:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            current_num = roman_map[roman]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">            total+=current_num</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> last_num <span class="keyword">and</span> current_num &gt;  last_num:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">                total -= <span class="number">2</span>* last_num</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">            last_num = current_num</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> total</span></pre></td></tr></table></figure>
+<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><p><img src="https://i.imgur.com/HjOcAXl.png" alt="result"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+              <a href="/tags/string/" rel="tag"># string</a>
+              <a href="/tags/math/" rel="tag"># math</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/15/web_practice/hamburger-menu/" rel="prev" title="漢堡選單 hamburger menu">
+      <i class="fa fa-chevron-left"></i> 漢堡選單 hamburger menu
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              目前共有 13 個標籤
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/NLP/" style="font-size: 19.2px; color: #818181">NLP</a> <a href="/tags/Paper/" style="font-size: 19.2px; color: #818181">Paper</a> <a href="/tags/RWD/" style="font-size: 26.4px; color: #363636">RWD</a> <a href="/tags/dialogue-generation/" style="font-size: 12px; color: #ccc">dialogue generation</a> <a href="/tags/leetcode/" style="font-size: 12px; color: #ccc">leetcode</a> <a href="/tags/machine-translation/" style="font-size: 15.6px; color: #a7a7a7">machine translation</a> <a href="/tags/math/" style="font-size: 12px; color: #ccc">math</a> <a href="/tags/python/" style="font-size: 30px; color: #111">python</a> <a href="/tags/string/" style="font-size: 12px; color: #ccc">string</a> <a href="/tags/w3HexSchool/" style="font-size: 15.6px; color: #a7a7a7">w3HexSchool</a> <a href="/tags/web/" style="font-size: 22.8px; color: #5c5c5c">web</a> <a href="/tags/web-project/" style="font-size: 12px; color: #ccc">web project</a> <a href="/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%B4%B9/" style="font-size: 12px; color: #ccc">自我介紹</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
   </div>
 
 
@@ -297,6 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解題構思"><span class="nav-number">1.</span> <span class="nav-text">解題構思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">2.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#結果"><span class="nav-number">3.</span> <span class="nav-text">結果</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -432,9 +506,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://sinlin0908.github.io/tags/index.html";
-    this.page.identifier = "tags/index.html";
-    this.page.title = "tags";
+    this.page.url = "https://sinlin0908.github.io/2020/02/22/leetcode/leetcode-Roman-to-Integer/";
+    this.page.identifier = "2020/02/22/leetcode/leetcode-Roman-to-Integer/";
+    this.page.title = "Leetcode - 13. Roman to Integer";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
